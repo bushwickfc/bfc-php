@@ -1,6 +1,6 @@
 <?php
-include "shared.php";
-include "aux_funcs.php";
+include "./shared.php";
+include "./aux_funcs.php";
 ini_set('display_errors',1); 
 error_reporting(E_ALL);
 
