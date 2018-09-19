@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Inventory - Bushwick Food Coop</title>
+	<link href="inventory.css" rel="stylesheet" type="text/css">
+	<link rel="shortcut icon" href="https://www.bushwickfoodcoop.org/favicon.ico">
+</head>
+<body>
+	<main>
+		<left>
+			<div class="header">
+				<div class="logoimage">
+					<a href="http://bushwickfoodcoop.org">
+						<img src="//static1.squarespace.com/static/5a54f5ccd74cff1c818ca40e/t/5a5fbea28165f51098cc9953/1516513105858/?format=100w">
+					</a>
+					<h1>Inventory</h1>
+				</div>
+				<input type="text" id="searchfield" placeholder="Search for products...">
+			</div>
+		</left>
+		<right>
+			<items></items>
+			<allitems></allitems>
+		</right>
+		<hidden>
+			<itemheader>
+				<itemrow>
+					<itemname></itemname>
+					<itemprice class="p1">Owner</itemprice>
+					<itemprice class="p2">Non-owner</itemprice>
+				</itemrow>
+			</itemheader>
+		</hidden>
+	</main>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115168270-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'UA-115168270-1');
+	</script>
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="inventory.js"></script>
+</body>
+</html>
