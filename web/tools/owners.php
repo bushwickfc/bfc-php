@@ -82,9 +82,15 @@ function print_results() {
         </p>
       </left>
       <right>
-        <span class="status_head">Owner status</span>
+        <div class="status_head">Owner status</div>
+        <div class="owner-status-key-container">
+          <span>Status key</span>
+          <p class="owner-status-key description">
+            Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable)
+          </p>
+        </div>
         <?php if (isset($_GET["submit"])) {?>
-        <p>
+        <div class="table-container">
           <table border=1>
             <tr>
               <th>Name / Status</th>
@@ -93,11 +99,7 @@ function print_results() {
             <?php print_results(); ?>
           <?php }?>
           </table>
-        </p>
-        <span>Owner Status Key</span>
-        <p>
-          Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable)
-        </p>
+        </div>
       </right>
     </main>
   </body>

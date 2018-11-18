@@ -31,6 +31,10 @@ span {
 	font-weight: bold;
 }
 
+table {
+	margin: 0 auto;
+}
+
 p.description {
 	padding-left: 6px;
 }
@@ -40,7 +44,7 @@ ul.description {
 }
 
 .description {
-	font-size: 90%;
+	font-size: 79%;
 	margin-top: 4px;
 }
 
@@ -96,7 +100,7 @@ input[type="text"] {
 input[type="submit"] {
 	position: absolute;
 	right: 15px;
-	background-color: black;
+	background-color: #454545;
 	color: white;
 	cursor: pointer;
 	height: 100%;
@@ -105,15 +109,32 @@ input[type="submit"] {
 	border: none;
 }
 
+input[type="submit"]:hover {
+	background-color: #000000;
+}
+
 left {
-	flex: 2;
+	flex: 1;
 }
 
 right{
 	flex: 3;
 	margin-left: 20px;
+	padding-top: 20px;
 }
 
 .status_head {
 	font-size: 180%;
+}
+
+.owner-status-key {
+	font-size: 90%;
+}
+
+.owner-status-key-container {
+	margin: 10px;
+}
+
+.table-container {
+	height: 100%;
 }
