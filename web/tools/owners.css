@@ -27,6 +27,23 @@ body {
 	margin: 0 auto;
 }
 
+span {
+	font-weight: bold;
+}
+
+p.description {
+	padding-left: 6px;
+}
+
+ul.description {
+	padding-left: 20px;
+}
+
+.description {
+	font-size: 90%;
+	margin-top: 4px;
+}
+
 .logoimage {
 	width: 200px;
 	display: inline-block;
@@ -58,8 +75,12 @@ main {
 	font-size: 150%;
 }
 
-/* The search field. */
-.header input[type="text"] {
+.submit_container {
+	height: 35px;
+	position: relative;
+}
+
+input[type="text"] {
 	display: inline-block !important;
 	font-size: 120%;
 	background-image: url('./inventory_searchicon.png'); 
@@ -72,12 +93,27 @@ main {
 	box-sizing: border-box;
 }
 
+input[type="submit"] {
+	position: absolute;
+	right: 15px;
+	background-color: black;
+	color: white;
+	cursor: pointer;
+	height: 100%;
+	width: 90px;
+	font-size: 100%;
+	border: none;
+}
+
 left {
-	flex:1;
+	flex: 2;
 }
 
 right{
 	flex: 3;
-	flex-flow: 1;
 	margin-left: 20px;
+}
+
+.status_head {
+	font-size: 180%;
 }

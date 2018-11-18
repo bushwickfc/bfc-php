@@ -46,44 +46,28 @@ function print_results() {
             <h1>Status lookup</h1>
           </div>
           <form id="main_form" action="owners.php" method="get">
-            Email: <input type="text" name="name" placeholder="Enter email address..." value="<?php if(isset($_GET["name"])) print $_GET["name"] ?>"><br>
-            <input type="submit" name="submit" value="Search">
+            <input type="text" name="name" placeholder="Enter email address..." value="<?php if(isset($_GET["name"])) print $_GET["name"] ?>"></br>
+            <div class="submit_container">
+              <input type="submit" name="submit" value="Search">
+            </div>
           </form>
         </div>
-      </left>
-      <right>
-        <?php if (isset($_GET["submit"])) {?>
-        <p>
-          <table border=1>
-            <tr>
-              <th>Name / Status</th>
-              <th>Email</th>
-            </tr>
-            
-            <?php print_results(); ?>
-          <?php }?>
-          </table>
-        </p>
-        <h4>Owner Status Key</h4>
-        <p>
-          Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable)
-        </p>
-        <h5>Hours Balance:</h5>
-        <p>
+        <span>Hours Balance:</span>
+        <p class="description">
           Current number of hours banked (may be positive or negative). 0 means that owner is up to date and owes only current month hours.
         </p>
-        <h5>Equity Delinquent:</h5> 
-        <p>
+        <span>Equity Delinquent:</span> 
+        <p class="description">
           Amount of equity owner has missed from previous month payment installments. Amount does not include an installment from the current month if owner is still on the payment plan.
         </p>
-        <h5>Status Code:</h5>
-        <ul>
+        <span>Status Code:</span>
+        <ul class="description">
           <li>1 = Active</li>
           <li>2 = Suspended for owed hours and/or equity</li>
           <li>3 = Suspended until Payment Plan Agreement submitted</li>
         </ul>
-        <h5>Ownership Category/Work Exemption Code:</h5>
-        <ul>
+        <span>Ownership Category/Work Exemption Code:</span>
+        <ul class="description">
           <li>S = Senior</li>
           <li>PG = Parent/Guardian</li>
           <li>DI = Disability/Injury</li>
@@ -91,9 +75,29 @@ function print_results() {
           <li>FL = Family Leave</li>
           <li>H = Hold</li>
         </ul>
-        As an example, consider the following:
-        <code> Jane Cooper // 10 // 2 // H // -25 </code></br>
-        Owner Jane Cooper is suspended, has 10 hours banked, is on hold, and is behind 25 dollars in their equity payments.
+        <span>For example:</span></br>
+        <code>Jane Cooper // 10 // 2 // H // -25</code>
+        <p class="description">
+          Owner Jane Cooper is suspended, has 10 hours banked, is on hold, and is behind 25 dollars in their equity payments.
+        </p>
+      </left>
+      <right>
+        <span class="status_head">Owner status</span>
+        <?php if (isset($_GET["submit"])) {?>
+        <p>
+          <table border=1>
+            <tr>
+              <th>Name / Status</th>
+              <th>Email</th>
+            </tr>
+            <?php print_results(); ?>
+          <?php }?>
+          </table>
+        </p>
+        <span>Owner Status Key</span>
+        <p>
+          Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable)
+        </p>
       </right>
     </main>
   </body>
