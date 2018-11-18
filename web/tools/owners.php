@@ -30,52 +30,71 @@ function print_results() {
 <!DOCTYPE html>
 <html>
   <head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Bushwick Food Coop: Status</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Status - Bushwick Food Coop</title>
+    <link href="owners.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="https://www.bushwickfoodcoop.org/favicon.ico">
   </head>
   <body>
-    <p>Status lookup</p>
-    <p>
-    <form id="main_form" action="owners.php" method="get">
-      Email: <input type="text" name="name" value="<?php if(isset($_GET["name"])) print $_GET["name"] ?>"><br>
-      <input type="submit" name="submit" value="Search">
-    </form>
-    </p>
-    
-    <?php if (isset($_GET["submit"])) {?>
-    <p>
-    <table border=1>
-      <tr>
-        <th>Name / Status</th>
-        <th>Email</th>
-      </tr>
-      
-      <?php print_results(); ?>
-    <?php }?>
-    </table>
-    </p>
-    <h4>Owner Status Key</h4>
-    <p>Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable) </p>
-<h5>Hours Balance:</h5>
-<p>Current number of hours banked (may be positive or negative). 0 means that owner is up to date and owes only current month hours.</p>
-
-<h5>Equity Delinquent:</h5> 
-<p>Amount of equity owner has missed from previous month payment installments. Amount does not include an installment from the current month if owner is still on the payment plan.</p>
-
-    <h5>Status Code:</h5>
-    <ul><li>1 = Active</li>
-    <li>2 = Suspended for owed hours and/or equity</li>
-    <li>3 = Suspended until Payment Plan Agreement submitted</li></ul>
-
-    <h5>Ownership Category/Work Exemption Code:</h5>
-<ul><li>S = Senior</li>
-<li>PG = Parent/Guardian</li>
-<li>DI = Disability/Injury</li>
-<li>P = Pregnancy</li>
-<li>FL = Family Leave</li>
-<li>H = Hold</li></ul>
-As an example, consider the following:
-<code> Jane Cooper // 10 // 2 // H // -25 </code>
-</br> Owner Jane Cooper is suspended, has 10 hours banked, is on hold, and is behind 25 dollars in their equity payments.
+    <main>
+      <left>
+        <div class="header">
+          <div class="logoimage">
+            <a href="http://bushwickfoodcoop.org">
+              <img src="//static1.squarespace.com/static/5a54f5ccd74cff1c818ca40e/t/5a5fbea28165f51098cc9953/1516513105858/?format=100w">
+            </a>
+            <h1>Status lookup</h1>
+          </div>
+          <form id="main_form" action="owners.php" method="get">
+            Email: <input type="text" name="name" placeholder="Enter email address..." value="<?php if(isset($_GET["name"])) print $_GET["name"] ?>"><br>
+            <input type="submit" name="submit" value="Search">
+          </form>
+        </div>
+      </left>
+      <right>
+        <?php if (isset($_GET["submit"])) {?>
+        <p>
+          <table border=1>
+            <tr>
+              <th>Name / Status</th>
+              <th>Email</th>
+            </tr>
+            
+            <?php print_results(); ?>
+          <?php }?>
+          </table>
+        </p>
+        <h4>Owner Status Key</h4>
+        <p>
+          Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable)
+        </p>
+        <h5>Hours Balance:</h5>
+        <p>
+          Current number of hours banked (may be positive or negative). 0 means that owner is up to date and owes only current month hours.
+        </p>
+        <h5>Equity Delinquent:</h5> 
+        <p>
+          Amount of equity owner has missed from previous month payment installments. Amount does not include an installment from the current month if owner is still on the payment plan.
+        </p>
+        <h5>Status Code:</h5>
+        <ul>
+          <li>1 = Active</li>
+          <li>2 = Suspended for owed hours and/or equity</li>
+          <li>3 = Suspended until Payment Plan Agreement submitted</li>
+        </ul>
+        <h5>Ownership Category/Work Exemption Code:</h5>
+        <ul>
+          <li>S = Senior</li>
+          <li>PG = Parent/Guardian</li>
+          <li>DI = Disability/Injury</li>
+          <li>P = Pregnancy</li>
+          <li>FL = Family Leave</li>
+          <li>H = Hold</li>
+        </ul>
+        As an example, consider the following:
+        <code> Jane Cooper // 10 // 2 // H // -25 </code></br>
+        Owner Jane Cooper is suspended, has 10 hours banked, is on hold, and is behind 25 dollars in their equity payments.
+      </right>
+    </main>
   </body>
 </html>
