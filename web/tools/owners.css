@@ -20,7 +20,8 @@
 	font-family: "Museo";
 }
 
-body {
+html, body {
+	height: 100%;
 	padding: 0px;
 	margin: 0px;
 	max-width: 1200px;
@@ -33,6 +34,10 @@ span {
 
 table {
 	margin: 0 auto;
+}
+
+td, th {
+	padding: 8px;
 }
 
 p.description {
@@ -132,9 +137,10 @@ right{
 }
 
 .owner-status-key-container {
-	margin: 10px;
+	margin: 15px 10px;
 }
 
 .table-container {
 	height: 100%;
+	padding-top: 15px;
 }
