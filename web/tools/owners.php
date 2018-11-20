@@ -76,7 +76,7 @@ function print_results() {
           <li>H = Hold</li>
         </ul>
         <span>For example:</span></br>
-        <code>Jane Cooper // 10 // 2 // H // -25</code>
+        <code>Jane Cooper // 2 // 10 // H // -25</code>
         <p class="description">
           Owner Jane Cooper is suspended, has 10 hours banked, is on hold, and is behind 25 dollars in their equity payments.
         </p>
