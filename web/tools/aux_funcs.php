@@ -27,4 +27,33 @@ function send_query($con, $sql) {
     }
     return($res);
 } 
+
+function connect_owners(
+    $owners_hostname,
+    $owners_username,
+    $owners_password,
+    $owners_database
+) {
+    $con = pg_connect(
+        "host={$owners_hostname} user={$owners_username} password={$owners_password} dbname={$owners_database} sslmode=require"
+    );
+    if (pg_last_error($con)) {
+        trigger_error("Connection Failed: " . pg_last_error($con),
+            E_USER_ERROR);
+    }
+    return($con);
+}
+
+function send_owners_query($con, $query, $params_array) {
+    $res = pg_query_params($con, $query, $params_array);
+    if ($res === false) {
+        trigger_error("Query failed: " . pg_last_error($con),
+            E_USER_ERROR);
+    }
+    return($res);
+}
+
+function snake_to_human($string) {
+    return(str_replace("_", " ", $string));
+}
 ?>
