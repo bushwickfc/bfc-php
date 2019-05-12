@@ -7,6 +7,14 @@ error_reporting(E_ALL);
 global $con;
 $con = connect($hostname, $username, $password, $database);
 
+global $owners_con;
+$owners_con = connect_owners(
+  $owners_hostname,
+  $owners_username,
+  $owners_password,
+  $owners_database
+);
+
 function search_for() {
   global $con;
   if (isset($_GET["name"]) && $_GET["name"] != "") {
@@ -17,12 +25,39 @@ function search_for() {
   return send_query($con, $q);
 }
 
+function search_for_owner_shifts() {
+  global $owners_con;
+  if (isset($_GET["name"]) && $_GET["name"] != "") {
+    $q = "SELECT hour_date, amount, hour_reason FROM hour_log WHERE email = $1";
+    $params = array($_GET["name"]);
+  } else {
+    trigger_error("Please supply an Email to search for", E_USER_ERROR);
+  }
+  return send_owners_query($owners_con, $q, $params);
+}
+
 function print_results() {
   $res = search_for();
   while ($row = mysqli_fetch_array($res)) {
-    printf("<tr><td>%s</td><td>%s</td</tr>\n", $row[0], $row[1]);  
+    printf("<tr><td>%s</td><td>%s</td></tr>\n", $row[0], $row[1]);  
   }
   mysqli_free_result($res);
+}
+
+function print_owner_shifts() {
+  $res = search_for_owner_shifts();
+  $total_hours = 0;
+  while ($row = pg_fetch_array($res)) {
+    printf(
+      "<tr><td class='right'>%s</td><td class='right'>%d</td><td>%s</td></tr>\n",
+      date("d-M-Y", strtotime($row[0])),
+      $row[1],
+      snake_to_human($row[2])
+    );
+    $total_hours += $row[1];
+  }
+  printf("<tr><td>Current hours:</td><td class='right'>%d</td><td></td></tr>", $total_hours);
+  pg_free_result($res);
 }
 
 ?>
@@ -82,24 +117,37 @@ function print_results() {
         </p>
       </left>
       <right>
-        <div class="status_head">Owner status</div>
-        <div class="owner-status-key-container">
-          <span>Status key</span>
-          <p class="owner-status-key description">
-            Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable)
-          </p>
-        </div>
         <?php if (isset($_GET["submit"])) {?>
-        <div class="table-container">
-          <table border=1>
-            <tr>
-              <th>Name / Status</th>
-              <th>Email</th>
-            </tr>
-            <?php print_results(); ?>
-          <?php }?>
-          </table>
-        </div>
+          <div class="table-container">
+            <div class="status_head">Owner status</div>
+            <div class="owner-status-key-container">
+              <span>Status key</span>
+              <p class="owner-status-key description">
+                Name // Status // Hours Balance // Ownership Category/Work Exemption (if applicable) // Equity Delinquent (if applicable)
+              </p>
+            </div>
+            <table border=1>
+              <tr>
+                <th>Name / Status</th>
+                <th>Email</th>
+              </tr>
+              <?php print_results(); ?>
+            </table>
+            <hr>
+            <div class="status_head">Owner hour log</div>
+              <p>
+                A list of all hours worked and monthly hour deductions recorded in BFC's database.
+              </p>
+            <table border=1>
+              <tr>
+                <th>Date</th>
+                <th>Hours Reported</th>
+                <th>Task</th>
+              </tr>
+              <?php print_owner_shifts(); ?>
+            </table>
+          </div>
+        <?php }?>
       </right>
     </main>
   </body>
