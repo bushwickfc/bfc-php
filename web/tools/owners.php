@@ -28,7 +28,7 @@ function search_for() {
 function search_for_owner_shifts() {
   global $owners_con;
   if (isset($_GET["name"]) && $_GET["name"] != "") {
-    $q = "SELECT hour_date, amount, hour_reason FROM hour_log WHERE email = $1 ORDER BY hour_date ASC";
+    $q = "SELECT hour_date, amount, hour_reason FROM hour_log WHERE REPLACE(email,'.','') = REPLACE($1,'.','') ORDER BY hour_date ASC";
     $params = array($_GET["name"]);
   } else {
     trigger_error("Please supply an Email to search for", E_USER_ERROR);
