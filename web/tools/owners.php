@@ -18,7 +18,8 @@ $owners_con = connect_owners(
 function search_for() {
   global $con;
   if (isset($_GET["name"]) && $_GET["name"] != "") {
-    $q = "SELECT name, searchkey FROM CUSTOMERS WHERE REPLACE(searchkey,'.','') = REPLACE('". $_GET["name"] ."','.','')";
+    $q = $con->prepare(""SELECT name, searchkey FROM CUSTOMERS WHERE REPLACE(searchkey,'.','') = REPLACE(?,'.','')"")
+    $q->bind_param("s", $_GET["name"])
   } else {
     trigger_error("Please supply an Email to search for", E_USER_ERROR);
   }
@@ -38,8 +39,8 @@ function search_for_owner_shifts() {
 
 function print_results() {
   $res = search_for();
-  while ($row = mysqli_fetch_array($res)) {
-    printf("<tr><td>%s</td><td>%s</td></tr>\n", $row[0], $row[1]);  
+  while ($row = $res->fetch_row()) {
+    printf("<tr><td>%s</td><td>%s</td></tr>\n", $row[0], $row[1]);
   }
   mysqli_free_result($res);
 }

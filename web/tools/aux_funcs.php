@@ -18,15 +18,16 @@ function connect($hostname, $username, $password, $database) {
     return($con);
 }
 
-function send_query($con, $sql) {
-    $res = $con->query($sql);
+function send_query($con, $q) {
+    $q->execute()
+    $res = $q->get_result()
     if ($res === false) {
         $user_error = 'Wrong SQL: ' . $sql . 'Error: ' . $con->errno . ' ' .
             $con->error;
         trigger_error($user_error, E_USER_ERROR);
     }
     return($res);
-} 
+}
 
 function connect_owners(
     $owners_hostname,
