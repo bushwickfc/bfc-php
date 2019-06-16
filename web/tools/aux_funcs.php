@@ -19,8 +19,8 @@ function connect($hostname, $username, $password, $database) {
 }
 
 function send_query($con, $q) {
-    $q->execute()
-    $res = $q->get_result()
+    $q->execute();
+    $res = $q->get_result();
     if ($res === false) {
         $user_error = 'Wrong SQL: ' . $sql . 'Error: ' . $con->errno . ' ' .
             $con->error;

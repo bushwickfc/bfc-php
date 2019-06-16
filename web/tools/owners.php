@@ -18,8 +18,8 @@ $owners_con = connect_owners(
 function search_for() {
   global $con;
   if (isset($_GET["name"]) && $_GET["name"] != "") {
-    $q = $con->prepare("SELECT name, searchkey FROM CUSTOMERS WHERE REPLACE(searchkey,'.','') = REPLACE(?,'.','')")
-    $q->bind_param("s", $_GET["name"])
+    $q = $con->prepare("SELECT name, searchkey FROM CUSTOMERS WHERE REPLACE(searchkey,'.','') = REPLACE(?,'.','')");
+    $q->bind_param("s", $_GET["name"]);
   } else {
     trigger_error("Please supply an Email to search for", E_USER_ERROR);
   }
